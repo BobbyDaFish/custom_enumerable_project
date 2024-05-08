@@ -28,16 +28,6 @@ module Enumerable
     i
   end
 
-  def my_each
-    for item in self
-      if block_given?
-        yield(item)
-      else
-        item
-      end
-    end
-  end
-
   def my_each_with_index
     i = 0
     my_each do |item|
@@ -85,4 +75,14 @@ end
 # to this method
 class Array
   # Define my_each here
+
+  def my_each
+    for item in self
+      if block_given?
+        yield(item)
+      else
+        item
+      end
+    end
+  end
 end
