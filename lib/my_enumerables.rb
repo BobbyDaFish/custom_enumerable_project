@@ -21,7 +21,6 @@ module Enumerable
     my_each do |item|
       if block_given?
         i += 1 if yield(item)
-
       else
         i += 1
       end
@@ -45,6 +44,38 @@ module Enumerable
       [yield(item, i)]
       i += 1
     end
+  end
+
+  def my_select
+    a = []
+    my_each do |item|
+      next unless yield(item)
+
+      a << item
+    end
+    a
+  end
+
+  def my_none?
+    my_each do |item|
+      return false if yield(item)
+    end
+    true
+  end
+
+  def my_map
+    a = []
+    my_each do |item|
+      a << yield(item)
+    end
+    a
+  end
+
+  def my_inject(start = 0)
+    my_each do |item|
+      start = yield(start, item)
+    end
+    start
   end
 end
 
